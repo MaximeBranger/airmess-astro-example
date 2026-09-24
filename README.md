@@ -1,6 +1,8 @@
 # Formulaire de contact Astro sans API route ni serveur
 
-Exemple complet et clonable : un composant Astro de formulaire de contact qui envoie les messages par email avec [AirMess](https://airmess.fr/?utm_source=github&utm_medium=readme&utm_campaign=airmess-astro-example&utm_content=intro), en gardant votre site 100 % statique (`output: 'static'`).
+Créez un composant Astro de formulaire de contact qui envoie les messages par email, en gardant votre site 100 % statique.
+
+Exemple complet et clonable, à utiliser avec [AirMess](https://airmess.fr/?utm_source=github&utm_medium=readme&utm_campaign=airmess-astro-example&utm_content=intro).
 
 Autres exemples : [HTML](https://github.com/MaximeBranger/airmess-html-example) · [Hugo](https://github.com/MaximeBranger/airmess-hugo-example)
 
@@ -11,12 +13,15 @@ Autres exemples : [HTML](https://github.com/MaximeBranger/airmess-html-example) 
 ```bash
 git clone https://github.com/MaximeBranger/airmess-astro-example.git
 cd airmess-astro-example
-cp .env.example .env   # puis remplacez VOTRE_ID par l'ID de votre formulaire AirMess
+```
+
+```bash
+cp .env.example .env   # puis remplacez VOTRE_TOKEN par le jeton de votre formulaire AirMess
 npm install
 npm run dev
 ```
 
-Ajoutez l'origine locale (ex. `http://localhost:4321`) à la liste des origines autorisées du formulaire AirMess.
+Ajoutez l'origine locale (ex. `http://localhost:4321`) à la liste des origines autorisées du formulaire.
 
 ## Garder Astro statique
 
@@ -73,8 +78,8 @@ const { formUrl = import.meta.env.PUBLIC_AIRMESS_URL } = Astro.props;
 
 Dans `.env` :
 
-```
-PUBLIC_AIRMESS_URL=https://airmess.fr/f/VOTRE_ID
+```bash
+PUBLIC_AIRMESS_URL=https://airmess.fr/api/submit/VOTRE_TOKEN
 ```
 
 Le préfixe `PUBLIC_` est nécessaire pour qu'Astro l'expose au build. L'URL n'est pas un secret, puisqu'elle apparaît dans le HTML, mais la variable permet d'utiliser une URL différente en préproduction.
@@ -90,10 +95,6 @@ import ContactForm from '../components/ContactForm.astro';
 ```
 
 Astro traite et regroupe automatiquement le `<script>` du composant : pas de configuration supplémentaire.
-
-## En cas de problème
-
-Si l'envoi échoue avec une erreur CORS dans la console, votre domaine n'est pas dans la liste des origines autorisées (pensez aussi à votre origine locale). Pour bloquer les robots, activez hCaptcha dans les réglages du formulaire.
 
 ## Licence
 
